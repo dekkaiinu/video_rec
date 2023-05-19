@@ -28,7 +28,7 @@ def main():
 
 def capture(set):
     num = 0
-    raps = np.zeros(5, dtype=object)
+    laps = np.zeros(5, dtype=object)
     cap = cv2.VideoCapture(CAMERA_DEVISE+cv2.CAP_DSHOW)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, IMAGE_WIDTH)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, IMAGE_HEIGHT)
@@ -53,13 +53,14 @@ def capture(set):
         key = cv2.waitKey(1) & 0xFF
         # 時間を記録する
         if key == ord('t'):
-            raps = rap(raps, num)
+            laps = rap(laps, num)
             num = num + 1
             print(str(num) + "回目")
 
         # 'q'キーを押して終了する
         if key == ord('q'):
-            print(raps)
+            print(laps)
+            np.save(FILEPATH + datetime.now().strftime("%Y-%m-%d_") + "SET" + str(set) +".npy", laps)
             break
 
     cap.release()  # カメラキャプチャを解放
@@ -68,11 +69,11 @@ def capture(set):
 
             
 
-def rap(raps, num):
+def rap(laps, num):
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(now)
-    raps[num] = now
-    return raps 
+    laps[num] = now
+    return laps 
 
 
 
