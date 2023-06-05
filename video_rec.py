@@ -4,6 +4,7 @@ import cv2
 import pyrealsense2 as rs
 from datetime import datetime
 import time
+import math
 
 """
 CONFIG
@@ -95,6 +96,7 @@ def date_rap(laps, num):
 def time_rap(start_time, laps, num):
     now = time.time()
     now_time = now - start_time
+    now_time = math.floor(now_time)
     print(now_time)
     laps[num] = now_time
     return laps
