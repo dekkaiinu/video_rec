@@ -71,14 +71,14 @@ def capture():
             laps_date = date_rap(laps_date, num)
             laps_time = time_rap(start_time, laps_time, num)
             depth = capture_depth(pipeline, config)
-            np.save(DEPTHPATH + datetime.now().strftime("%Y-%m-%d-%s_") + ".npy", depth)
+            np.save(DEPTHPATH + datetime.now().strftime("%Y-%m-%d_%H:%M:%S") + ".npy", depth)
             num = num + 1
             print(str(num) + "回目")
 
         # 'q'キーを押して終了する
         if key == ord('q'):
             laps = np.stack([laps_date, laps_time])
-            np.save(FILEPATH + datetime.now().strftime("%Y-%m-%d_") + ".npy", laps)
+            np.save(FILEPATH + datetime.now().strftime("%Y-%m-%d_%H:%M:%S") + ".npy", laps)
             break
 
     cap.release()  # カメラキャプチャを解放
