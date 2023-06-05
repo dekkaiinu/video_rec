@@ -48,6 +48,12 @@ def capture():
         os.makedirs(DEPTHPATH)
     out = cv2.VideoWriter(FILEPATH + filename, fourcc, FPS, (IMAGE_WIDTH, IMAGE_HEIGHT))  # 出力ファイル名、コーデック、フレームレート、フレームサイズを指定
 
+    # RealSenseパイプラインの設定
+    pipeline = rs.pipeline()
+    config = rs.config()
+    config.enable_stream(rs.stream.depth, 1280, 720, rs.format.z16, 30)
+    
+
     while cap.isOpened():
         ret, frame = cap.read()  # フレームを取得
 
@@ -64,7 +70,8 @@ def capture():
         if key == ord('t'):
             laps_date = date_rap(laps_date, num)
             laps_time = time_rap(start_time, laps_time, num)
-            depth
+            depth = capture_depth(pipeline, config)
+            np.save(DEPTHPATH + datetime.now().strftime("%Y-%m-%d_") + ".npy", depth)
             num = num + 1
             print(str(num) + "回目")
 
@@ -92,8 +99,21 @@ def time_rap(start_time, laps, num):
     laps[num] = now_time
     return laps
 
-def capture_depth():
-    depth_image = 0
+def capture_depth(pipeline, config):
+    # パイプラインを開始
+    pipeline.start(config)
+    try:
+        # フレームを待機
+        frames = pipeline.wait_for_frames()
+        depth_frame = frames.get_depth_frame()
+
+        # DepthデータをNumPy配列に変換
+        depth_image = np.asanyarray(depth_frame.get_data())
+
+    finally:
+        # パイプラインを停止
+        pipeline.stop()
+
     return depth_image
 
 
