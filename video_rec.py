@@ -95,6 +95,7 @@ def date_rap(laps, num):
 def time_rap(start_time, laps, num):
     now = time.time()
     now_time = now - start_time
+    print(now_time)
     laps[num] = now_time
     return laps
 
