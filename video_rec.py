@@ -15,6 +15,7 @@ IMAGE_HEIGHT = 720
 FPS = 30.0
 
 FILEPATH = "./" + datetime.now().strftime("%Y-%m-%d") + "/"
+DEPTHPATH = FILEPATH + "depth/"
 
 """
 """
@@ -43,6 +44,8 @@ def capture():
     filename = datetime.now().strftime("%Y-%m-%d_") +".mp4"
     if not os.path.exists(FILEPATH):
         os.makedirs(FILEPATH)
+    if not os.path.exists(DEPTHPATH):
+        os.makedirs(DEPTHPATH)
     out = cv2.VideoWriter(FILEPATH + filename, fourcc, FPS, (IMAGE_WIDTH, IMAGE_HEIGHT))  # 出力ファイル名、コーデック、フレームレート、フレームサイズを指定
 
     while cap.isOpened():
@@ -61,6 +64,7 @@ def capture():
         if key == ord('t'):
             laps_date = date_rap(laps_date, num)
             laps_time = time_rap(start_time, laps_time, num)
+            depth
             num = num + 1
             print(str(num) + "回目")
 
@@ -87,6 +91,10 @@ def time_rap(start_time, laps, num):
     now_time = now - start_time
     laps[num] = now_time
     return laps
+
+def capture_depth():
+    depth_image = 0
+    return depth_image
 
 
 if __name__ == "__main__":
