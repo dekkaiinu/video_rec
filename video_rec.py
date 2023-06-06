@@ -6,9 +6,8 @@ from datetime import datetime
 import time
 import math
 
-"""
-CONFIG
-"""
+
+""
 CAMERA_DEVISE = 1
 
 IMAGE_WIDTH = 1280
@@ -18,8 +17,7 @@ FPS = 30.0
 FILEPATH = "./" + datetime.now().strftime("%Y-%m-%d") + "/"
 DEPTHPATH = FILEPATH + "depth/"
 
-"""
-"""
+""
 
 
 def main():
