@@ -5,16 +5,16 @@ import pyrealsense2 as rs
 from datetime import datetime
 import time
 import math
-
+import sys
 
 ""
-CAMERA_DEVISE = 1
+CAMERA_DEVISE = int(sys.argv[1])
 
 IMAGE_WIDTH = 1280
 IMAGE_HEIGHT = 720
-FPS = 30.0
+FPS = 15.0
 
-FILEPATH = "./" + datetime.now().strftime("%Y-%m-%d") + "/"
+FILEPATH = "D:/ueno_zoo/penguin/video&depth/" + datetime.now().strftime("%Y-%m-%d") + "/"
 DEPTHPATH = FILEPATH + "depth/"
 
 ""
@@ -40,7 +40,7 @@ def capture():
     cap.set(cv2.CAP_PROP_FPS, FPS)
 
     fourcc = cv2.VideoWriter_fourcc("m", "p", "4", "v")  # 動画のコーデックを指定
-    filename = datetime.now().strftime("%Y-%m-%d_") +".mp4"
+    filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") +".mp4"
     if not os.path.exists(FILEPATH):
         os.makedirs(FILEPATH)
     if not os.path.exists(DEPTHPATH):
@@ -70,14 +70,14 @@ def capture():
             laps_date = date_rap(laps_date, num)
             laps_time = time_rap(start_time, laps_time, num)
             depth = capture_depth(pipeline, config)
-            np.save(DEPTHPATH + datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".npy", depth)
+            np.save(DEPTHPATH + "DepthImage_"+ datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".npy", depth)
             num = num + 1
             print(str(num) + "回目")
 
         # 'q'キーを押して終了する
         if key == ord('q'):
             laps = np.stack([laps_date, laps_time])
-            np.save(FILEPATH + datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".npy", laps)
+            np.save(FILEPATH + "time_" +datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".npy", laps)
             break
 
     cap.release()  # カメラキャプチャを解放
