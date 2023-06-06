@@ -2,6 +2,8 @@ import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
 
+import NHdata2pkl
+
 ""
 LOADPATH = "C:\\Users\\youta\\dataset\\Img-d_frozen.pkl"
 WITEPATH = "./a.png"
