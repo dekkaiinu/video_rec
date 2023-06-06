@@ -5,10 +5,14 @@ import matplotlib.pyplot as plt
 import NHdata2pkl
 
 ""
-LOADPATH = "C:\\Users\\youta\\dataset\\Img-d_frozen.pkl"
+LOADPATH = "C:\\Users\\youta\\dataset\\Img-d_frozen_length120_height2_white(s20,g50,49.88ms,350-1100)_20230424_145859.nh9"
 WITEPATH = "./a.png"
 COLORS = ["indigo", "blueviolet", "dodgerblue", "lawngreen", "yellow", "orange", "red", "darkred", "maroon","saddlebrown","black","gray","silver","lightgray","gainsboro"]
 LABELS = ["1~10", "11~20", "21~30", "31~40", "41~50", "51~60", "61~70", "71~80", "81~90","91~100","101~110","111~120","121~130","131~140","141~150"]
+
+HOR = 2048
+VER = 1080
+SPECDIM = 151
 
 THRESHOLD = 5 #飽和状態を決定する画素値の閾値(上下の)
 SATURATION_RATIO = 0.01 #飽和認定する画素値の比率
@@ -16,7 +20,7 @@ SATURATION_RATIO = 0.01 #飽和認定する画素値の比率
 ""
 
 def main():
-    array = load_data(LOADPATH)
+    array = NHdata2pkl.load_data(LOADPATH, HOR, VER, SPECDIM)
     array = ((array / 4095) * 255).astype(np.uint8)
     count = 0
     rates = []
