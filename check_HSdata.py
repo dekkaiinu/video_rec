@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 LOADPATH = "C:/Users/youta/HsRawData2pickle/img02_Img-d(s35,g20,28.45ms,350-1100).pkl"
 WITEPATH = "./a.png"
 COLORS = ["indigo", "blueviolet", "dodgerblue", "lawngreen", "yellow", "orange", "red", "darkred", "maroon","saddlebrown","black","gray","silver","lightgray","gainsboro"]
-LEGENDS = ["1~10", "11~20", "21~30", "31~40", "41~50", "51~60", "61~70", "71~80", "81~90","91~100","101~110","111~120","121~130","131~140","141~150"]
+LABELS = ["1~10", "11~20", "21~30", "31~40", "41~50", "51~60", "61~70", "71~80", "81~90","91~100","101~110","111~120","121~130","131~140","141~150"]
 
 THRESHOLD = 5 #飽和状態を決定する画素値の閾値(上下の)
 SATURATION_RATIO = 0.1 #飽和認定する画素値の比率
@@ -77,7 +77,7 @@ def plot_hist(array):
     for i, ax in enumerate(axes.flatten()):
         histgram = cv.calcHist([hist_array[:, :, i]], [0], None, [256], [0, 256])
         ax.plot(histgram, color=COLORS[i], alpha=0.8)
-        ax.set_title(LEGENDS[i])
+        ax.set_title(LABELS[i])
         ax.set_xlim(-5, 256)
         ax.set_ylim(0, 50000)
     
