@@ -8,8 +8,8 @@ WITEPATH = "./a.png"
 COLORS = ["indigo", "blueviolet", "dodgerblue", "lawngreen", "yellow", "orange", "red", "darkred", "maroon","saddlebrown","black","gray","silver","lightgray","gainsboro"]
 LABELS = ["1~10", "11~20", "21~30", "31~40", "41~50", "51~60", "61~70", "71~80", "81~90","91~100","101~110","111~120","121~130","131~140","141~150"]
 
-THRESHOLD = 1 #飽和状態を決定する画素値の閾値(上下の)
-SATURATION_RATIO = 0.000001 #飽和認定する画素値の比率
+THRESHOLD = 5 #飽和状態を決定する画素値の閾値(上下の)
+SATURATION_RATIO = 0.01 #飽和認定する画素値の比率
 # 2048 * 1080 = 2,211,840  を256(画素値)で割ると1つのビンあたり8640
 ""
 
@@ -21,18 +21,20 @@ def main():
     for i in range(151):
         band_array = band_image_array(array, i)
         rate, frag = saturation_detect(band_array)
+
+        rate = round(rate, 2)
+        rate_pr = str(i + 1) + " :" + str(rate)
+        rates.append(rate_pr)
+
         if frag == True:
             count += 1
-            rate = round(rate, 2)
-            rate_pr = str(i + 1) + " :" + str(rate)
-            #print(rate_pr)
-            rates.append(rate_pr)
-    cv.imshow("Window Name", band_image_array(array, 41))
+    
     np.savetxt('saturation_pixel_rate.csv', rates ,delimiter=',', fmt='%s')
     print("飽和バンド率：", end="")
     print("{:.2f}".format(count / i))
     plot_hist(array)
-    #指定したバンドのヒストグラムを出力
+    #指定したバンドのヒストグラムとグレースケール画像を出力
+    #cv.imshow("band image", band_image_array(array, 41))
     #select_plot_hist(band_image_array(array, 41))
 
 
