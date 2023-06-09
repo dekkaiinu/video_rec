@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import NHdata2pkl
 
 ""
-LOADPATH = "C:\\Users\\youta\\dataset\\Img-d_frozen_length120_height2_white(s20,g50,49.88ms,350-1100)_20230424_145859.nh9"
+LOADPATH = "D:\\ueno_zoo\\penguin\\20230607\\20230607\\set7\\Scan(s100x5,g100,9.88ms,350-1100)_20230607_150837.nh9"
 WITEPATH = "./a.png"
 COLORS = ["indigo", "blueviolet", "dodgerblue", "lawngreen", "yellow", "orange", "red", "darkred", "maroon","saddlebrown","black","gray","silver","lightgray","gainsboro"]
 LABELS = ["1~10", "11~20", "21~30", "31~40", "41~50", "51~60", "61~70", "71~80", "81~90","91~100","101~110","111~120","121~130","131~140","141~150"]
