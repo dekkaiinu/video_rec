@@ -16,7 +16,7 @@ def convert_depth_array_to_image(depth_array):
     return depth_image
 
 # NumPy配列から深度画像を作成
-depth_array = np.load("C:\\Users\\youta\\dataset\\2023-06-05\\depth\\2023-06-05_14-34-27.npy")
+depth_array = np.load("D:\\ueno_zoo\\penguin\\video&depth\\2023-06-11\\depth\\DepthImage_2023-06-11_14-20-53.npy")
 depth_image = convert_depth_array_to_image(depth_array)
 
 # 深度画像を表示
