@@ -14,7 +14,8 @@ IMAGE_WIDTH = 1280
 IMAGE_HEIGHT = 720
 FPS = 15.0
 
-FILEPATH = "D:/ueno_zoo/penguin/video&depth/" + datetime.now().strftime("%Y-%m-%d") + "/"
+FILEPATH = "./ueno_zoo/penguin/" + datetime.now().strftime("%Y-%m-%d") + "/set" + sys.argv[2] + "/"
+#FILEPATH = "D:/ueno_zoo/penguin/" + datetime.now().strftime("%Y-%m-%d") + "/set" + sys.argv[2] + "/"
 DEPTHPATH = FILEPATH + "depth/"
 
 ""
