@@ -6,7 +6,7 @@ import NHdata2pkl
 
 ""
 LOADPATH = "D:\\ueno_zoo\\penguin\\20230607\\20230607\\set7\\Scan(s100x5,g100,9.88ms,350-1100)_20230607_150837.nh9"
-SAVEPATH = "./suti_images/"
+SAVEPATH = "./suti_images/a/"
 
 HOR = 2048
 VER = 1080
